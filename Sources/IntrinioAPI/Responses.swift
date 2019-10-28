@@ -27,3 +27,13 @@ public struct Currencies : ResponseAPI {
 	public let currencies : [Currency]
 
 }
+
+// MARK: - Pairs
+
+/// A list of currency pairs used to request foreign exchange (forex) market price data.
+public struct CurrencyPairs : ResponseAPI {
+
+	/// The currency pairs list.
+	public let pairs : [Currency.Pair]
+
+}

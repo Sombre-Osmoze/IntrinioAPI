@@ -55,4 +55,24 @@ public struct Currency: ResponseAPI {
 		case ZAR = "ZAR"
 	}
 
+	/// The currency that is used as the reference is called quote currency and the currency that is quoted in relation is called the base currency.
+	/// - note: in the pair code “EURGBP” with a price of 0.88, one Euro (base currency) can be exchanged for 0.88 British Pounds (quote currency).
+	public struct Pair : ResponseAPI {
+
+		/// The common code of the currency pair.
+		let code : String
+
+		/// The ISO 4217 currency code of the base currency.
+		let base : Code
+
+		/// The ISO 4217 currency code of the quote currency.
+		let quote : Code
+
+		enum CodingKeys: String, CodingKey {
+			case code
+			case base = "base_currency"
+			case quote = "quote_currency"
+		}
+	}
+
 }

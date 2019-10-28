@@ -18,13 +18,22 @@ final class ForexTests: XCTestCase {
 	func testCurrenciesDecoding() throws {
 		let data = try file(named: "currencies", ext: "json", in: forexFolder)
 
-
+		// Try to decode data in the structure
 		XCTAssertNoThrow(try decoder.decode(Currencies.self, from: data), "Can't decode currencies list")
 	}
-	
+
+	// MARK: Pairs
+
+	func testCurrencyPairsDecoding() throws {
+		let data = try file(named: "currency_pairs", ext: "json", in: forexFolder)
+
+		// Try to decode data in the structure
+		XCTAssertNoThrow(try decoder.decode(CurrencyPairs.self, from: data), "Can't decode currency pairs list")
+	}
 
 	static var allTests = [
-		("Currencies Decoding", testCurrenciesDecoding),
+		("Currencies decoding", testCurrenciesDecoding),
+		("Currency pairs decoding", testCurrencyPairsDecoding)
 	]
 }
 

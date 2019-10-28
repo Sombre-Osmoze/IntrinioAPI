@@ -1,0 +1,204 @@
+{
+	"pairs": [
+	{
+	"code": "AUDCAD",
+	"base_currency": "AUD",
+	"quote_currency": "CAD"
+	},
+	{
+	"code": "AUDCHF",
+	"base_currency": "AUD",
+	"quote_currency": "CHF"
+	},
+	{
+	"code": "AUDJPY",
+	"base_currency": "AUD",
+	"quote_currency": "JPY"
+	},
+	{
+	"code": "AUDNZD",
+	"base_currency": "AUD",
+	"quote_currency": "NZD"
+	},
+	{
+	"code": "AUDUSD",
+	"base_currency": "AUD",
+	"quote_currency": "USD"
+	},
+	{
+	"code": "CADCHF",
+	"base_currency": "CAD",
+	"quote_currency": "CHF"
+	},
+	{
+	"code": "CADJPY",
+	"base_currency": "CAD",
+	"quote_currency": "JPY"
+	},
+	{
+	"code": "CHFJPY",
+	"base_currency": "CHF",
+	"quote_currency": "JPY"
+	},
+	{
+	"code": "EURAUD",
+	"base_currency": "EUR",
+	"quote_currency": "AUD"
+	},
+	{
+	"code": "EURCAD",
+	"base_currency": "EUR",
+	"quote_currency": "CAD"
+	},
+	{
+	"code": "EURCHF",
+	"base_currency": "EUR",
+	"quote_currency": "CHF"
+	},
+	{
+	"code": "EURGBP",
+	"base_currency": "EUR",
+	"quote_currency": "GBP"
+	},
+	{
+	"code": "EURJPY",
+	"base_currency": "EUR",
+	"quote_currency": "JPY"
+	},
+	{
+	"code": "EURNOK",
+	"base_currency": "EUR",
+	"quote_currency": "NOK"
+	},
+	{
+	"code": "EURNZD",
+	"base_currency": "EUR",
+	"quote_currency": "NZD"
+	},
+	{
+	"code": "EURSEK",
+	"base_currency": "EUR",
+	"quote_currency": "SEK"
+	},
+	{
+	"code": "EURTRY",
+	"base_currency": "EUR",
+	"quote_currency": "TRY"
+	},
+	{
+	"code": "EURUSD",
+	"base_currency": "EUR",
+	"quote_currency": "USD"
+	},
+	{
+	"code": "GBPAUD",
+	"base_currency": "GBP",
+	"quote_currency": "AUD"
+	},
+	{
+	"code": "GBPCAD",
+	"base_currency": "GBP",
+	"quote_currency": "CAD"
+	},
+	{
+	"code": "GBPCHF",
+	"base_currency": "GBP",
+	"quote_currency": "CHF"
+	},
+	{
+	"code": "GBPJPY",
+	"base_currency": "GBP",
+	"quote_currency": "JPY"
+	},
+	{
+	"code": "GBPNZD",
+	"base_currency": "GBP",
+	"quote_currency": "NZD"
+	},
+	{
+	"code": "GBPUSD",
+	"base_currency": "GBP",
+	"quote_currency": "USD"
+	},
+	{
+	"code": "NZDCAD",
+	"base_currency": "NZD",
+	"quote_currency": "CAD"
+	},
+	{
+	"code": "NZDCHF",
+	"base_currency": "NZD",
+	"quote_currency": "CHF"
+	},
+	{
+	"code": "NZDJPY",
+	"base_currency": "NZD",
+	"quote_currency": "JPY"
+	},
+	{
+	"code": "NZDUSD",
+	"base_currency": "NZD",
+	"quote_currency": "USD"
+	},
+	{
+	"code": "TRYJPY",
+	"base_currency": "TRY",
+	"quote_currency": "JPY"
+	},
+	{
+	"code": "USDCAD",
+	"base_currency": "USD",
+	"quote_currency": "CAD"
+	},
+	{
+	"code": "USDCHF",
+	"base_currency": "USD",
+	"quote_currency": "CHF"
+	},
+	{
+	"code": "USDCNH",
+	"base_currency": "USD",
+	"quote_currency": "CNH"
+	},
+	{
+	"code": "USDHKD",
+	"base_currency": "USD",
+	"quote_currency": "HKD"
+	},
+	{
+	"code": "USDJPY",
+	"base_currency": "USD",
+	"quote_currency": "JPY"
+	},
+	{
+	"code": "USDMXN",
+	"base_currency": "USD",
+	"quote_currency": "MXN"
+	},
+	{
+	"code": "USDNOK",
+	"base_currency": "USD",
+	"quote_currency": "NOK"
+	},
+	{
+	"code": "USDSEK",
+	"base_currency": "USD",
+	"quote_currency": "SEK"
+	},
+	{
+	"code": "USDTRY",
+	"base_currency": "USD",
+	"quote_currency": "TRY"
+	},
+	{
+	"code": "USDZAR",
+	"base_currency": "USD",
+	"quote_currency": "ZAR"
+	},
+	{
+	"code": "ZARJPY",
+	"base_currency": "ZAR",
+	"quote_currency": "JPY"
+	}
+	]
+}
