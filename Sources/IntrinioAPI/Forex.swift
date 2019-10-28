@@ -69,7 +69,7 @@ public struct Currency: ResponseAPI {
 		let quote : Code
 
 		enum CodingKeys: String, CodingKey {
-			case code
+			case code = "code"
 			case base = "base_currency"
 			case quote = "quote_currency"
 		}

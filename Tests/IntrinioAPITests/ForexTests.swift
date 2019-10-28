@@ -31,6 +31,15 @@ final class ForexTests: XCTestCase {
 		XCTAssertNoThrow(try decoder.decode(CurrencyPairs.self, from: data), "Can't decode currency pairs list")
 	}
 
+	// MARK: Prices
+
+	func testCurrencyPricesDecoding() throws {
+		let data = try file(named: "currency_prices", ext: "json", in: forexFolder)
+
+		// Try to decode data prices
+		XCTAssertNoThrow(try decoder.decode(CurrencyPrices.self, from: data), "Can't decode currency prices")
+	}
+
 	static var allTests = [
 		("Currencies decoding", testCurrenciesDecoding),
 		("Currency pairs decoding", testCurrencyPairsDecoding)

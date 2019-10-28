@@ -18,12 +18,11 @@ func log(_ error: IntrinioAPI.APIError.StatusCode) -> StaticString {
 	case .notFound:
 		return "The endpoint requested does not exist."
 	case .tooManyRequest:
-		return "You have hit a limit.."
+		return "limit hit…"
 	case .internalServerError:
 		return "A problem with the server. Try again later."
 	case .serviceUnavailable:
 		return "Throttle limit hit or Intrinio may be experiencing high system load."
 
 	}
-
 }

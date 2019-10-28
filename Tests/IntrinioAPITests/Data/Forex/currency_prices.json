@@ -1,0 +1,130 @@
+{
+	"prices": [
+	{
+	"occurred_at": "2019-09-05T21:00:00.000Z",
+	"open_bid": "1.10343",
+	"high_bid": "1.10347",
+	"low_bid": "1.1034",
+	"close_bid": "1.10345",
+	"open_ask": "1.10351",
+	"high_ask": "1.10355",
+	"low_ask": "1.10347",
+	"close_ask": "1.10354",
+	"total_ticks": 31
+	},
+	{
+	"occurred_at": "2019-09-04T21:00:00.000Z",
+	"open_bid": "1.10355",
+	"high_bid": "1.10848",
+	"low_bid": "1.10166",
+	"close_bid": "1.10343",
+	"open_ask": "1.10362",
+	"high_ask": "1.10848",
+	"low_ask": "1.10168",
+	"close_ask": "1.10351",
+	"total_ticks": 236522
+	},
+	{
+	"occurred_at": "2019-09-03T21:00:00.000Z",
+	"open_bid": "1.09725",
+	"high_bid": "1.10385",
+	"low_bid": "1.09684",
+	"close_bid": "1.10355",
+	"open_ask": "1.09747",
+	"high_ask": "1.10386",
+	"low_ask": "1.09687",
+	"close_ask": "1.10362",
+	"total_ticks": 195228
+	},
+	{
+	"occurred_at": "2019-09-02T21:00:00.000Z",
+	"open_bid": "1.0967",
+	"high_bid": "1.09789",
+	"low_bid": "1.09259",
+	"close_bid": "1.09725",
+	"open_ask": "1.09728",
+	"high_ask": "1.09791",
+	"low_ask": "1.09261",
+	"close_ask": "1.09747",
+	"total_ticks": 214816
+	},
+	{
+	"occurred_at": "2019-09-01T21:00:00.000Z",
+	"open_bid": "1.09899",
+	"high_bid": "1.09965",
+	"low_bid": "1.09579",
+	"close_bid": "1.0967",
+	"open_ask": "1.0993",
+	"high_ask": "1.0997",
+	"low_ask": "1.09581",
+	"close_ask": "1.09728",
+	"total_ticks": 107362
+	},
+	{
+	"occurred_at": "2019-08-29T21:00:00.000Z",
+	"open_bid": "1.10566",
+	"high_bid": "1.10605",
+	"low_bid": "1.0963",
+	"close_bid": "1.09875",
+	"open_ask": "1.10569",
+	"high_ask": "1.10606",
+	"low_ask": "1.09631",
+	"close_ask": "1.09926",
+	"total_ticks": 203515
+	},
+	{
+	"occurred_at": "2019-08-28T21:00:00.000Z",
+	"open_bid": "1.10772",
+	"high_bid": "1.10934",
+	"low_bid": "1.1042",
+	"close_bid": "1.10566",
+	"open_ask": "1.10782",
+	"high_ask": "1.10938",
+	"low_ask": "1.10422",
+	"close_ask": "1.10569",
+	"total_ticks": 201892
+	},
+	{
+	"occurred_at": "2019-08-27T21:00:00.000Z",
+	"open_bid": "1.109",
+	"high_bid": "1.10981",
+	"low_bid": "1.10734",
+	"close_bid": "1.10772",
+	"open_ask": "1.10907",
+	"high_ask": "1.10982",
+	"low_ask": "1.10733",
+	"close_ask": "1.10782",
+	"total_ticks": 190786
+	},
+	{
+	"occurred_at": "2019-08-26T21:00:00.000Z",
+	"open_bid": "1.10999",
+	"high_bid": "1.11162",
+	"low_bid": "1.10858",
+	"close_bid": "1.109",
+	"open_ask": "1.11037",
+	"high_ask": "1.11162",
+	"low_ask": "1.10858",
+	"close_ask": "1.10907",
+	"total_ticks": 208643
+	},
+	{
+	"occurred_at": "2019-08-25T21:00:00.000Z",
+	"open_bid": "1.115",
+	"high_bid": "1.11638",
+	"low_bid": "1.10942",
+	"close_bid": "1.10999",
+	"open_ask": "1.11522",
+	"high_ask": "1.11645",
+	"low_ask": "1.10944",
+	"close_ask": "1.11037",
+	"total_ticks": 285738
+	}
+	],
+	"pair": {
+		"code": "EURUSD",
+		"base_currency": "EUR",
+		"quote_currency": "USD"
+	},
+	"next_page": "MjAxOS0wOC0yNSAyMTowMDowMCBVVEN8ODMzNjE1NTcy"
+}

@@ -8,10 +8,11 @@
 import Foundation
 import Logging
 
-class IntrinioAPI {
+class IntrinioAPI: NSObject {
 
 	init(api key: String) {
-		
+
+		super.init()
 	}
 
 	// MARK: - Errors
