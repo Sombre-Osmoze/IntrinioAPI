@@ -1,0 +1,79 @@
+{
+	"currencies": [
+	{
+	"code": "AUD",
+	"name": "Dollar",
+	"country": "Australia"
+	},
+	{
+	"code": "CAD",
+	"name": "Dollar",
+	"country": "Canada"
+	},
+	{
+	"code": "CHF",
+	"name": "Franc",
+	"country": "Switzerland"
+	},
+	{
+	"code": "CNH",
+	"name": "Yuan",
+	"country": "China"
+	},
+	{
+	"code": "EUR",
+	"name": "Euro",
+	"country": "Eurozone"
+	},
+	{
+	"code": "GBP",
+	"name": "Pound",
+	"country": "Great Britain"
+	},
+	{
+	"code": "HKD",
+	"name": "Dollar",
+	"country": "Hong Kong"
+	},
+	{
+	"code": "JPY",
+	"name": "Yen",
+	"country": "Japan"
+	},
+	{
+	"code": "MXN",
+	"name": "Peso",
+	"country": "Mexico"
+	},
+	{
+	"code": "NOK",
+	"name": "Krone",
+	"country": "Norway"
+	},
+	{
+	"code": "NZD",
+	"name": "Dollar",
+	"country": "New Zealand"
+	},
+	{
+	"code": "SEK",
+	"name": "Krona",
+	"country": "Sweden"
+	},
+	{
+	"code": "TRY",
+	"name": "Lira",
+	"country": "Turkey"
+	},
+	{
+	"code": "USD",
+	"name": "Dollar",
+	"country": "United States"
+	},
+	{
+	"code": "ZAR",
+	"name": "Rand",
+	"country": "South Africa"
+	}
+	]
+}

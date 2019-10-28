@@ -13,3 +13,23 @@ final class IntrinioAPITests: XCTestCase {
         ("testExample", testExample),
     ]
 }
+
+// MARK: - Testing Data
+
+let testFolder : URL = {
+	var url = URL(fileURLWithPath: #file)
+	url.deleteLastPathComponent()
+	url.appendPathComponent("Data", isDirectory: true)
+	return url
+}()
+
+func file(named name: String, ext: String? = nil, in folder: URL = testFolder) throws -> Data {
+	var url = folder.appendingPathComponent(name, isDirectory: false)
+
+	if let ext = ext {
+		url.appendPathExtension(ext)
+	}
+
+	return try Data(contentsOf: url)
+}
+
