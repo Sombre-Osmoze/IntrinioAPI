@@ -36,6 +36,12 @@ public class IntrinioAPI: NSObject {
 			case serviceUnavailable = 503
 		}
 
+		enum Response: Error {
+			case corrupted
+			case badStatus(Int)
+			case invalid(code: StatusCode, error: ResponseError)
+		}
+
 	}
 
 
