@@ -80,6 +80,19 @@ public class IntrinioAPI: NSObject {
 
 	// MARK: - Errors
 
+	private func handle(_ error: Error, log: StaticString) -> ErrorAPI {
+
+		switch error {
+		case let status as ErrorAPI.StatusCode :
+			return ErrorAPI(status)
+		case let response as ErrorAPI.Response:
+			return ErrorAPI(response)
+		default:
+			return ErrorAPI(error)
+		}
+
+	}
+
 	public struct ErrorAPI: Error {
 
 		enum StatusCode: Int, Error {
