@@ -77,6 +77,8 @@ public class IntrinioAPI: NSObject {
 
 		enum Response: Error {
 			case corrupted
+			case noResponse
+			case noData
 			case badStatus(Int)
 			case invalid(code: StatusCode, error: ResponseError)
 		}
