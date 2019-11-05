@@ -8,9 +8,17 @@
 import Foundation
 import Logging
 
-class IntrinioAPI: NSObject {
+#if canImport(Combine)
+import Combine
+#endif
 
-	init(api key: String) {
+#if canImport(os)
+import os.signpost
+#endif
+
+public class IntrinioAPI: NSObject {
+
+	public init(api key: String) {
 
 		super.init()
 	}
@@ -36,7 +44,9 @@ class IntrinioAPI: NSObject {
 
 	private let logger = Logger(label: "IntrinioAPI")
 
-
+	#if canImport(os)
+	private let logging = OSLog(subsystem: "IntrinioAPI", category: "Request")
+	#endif
 
 
 }
