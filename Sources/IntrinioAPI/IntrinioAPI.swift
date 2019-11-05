@@ -83,6 +83,13 @@ public class IntrinioAPI: NSObject {
 			case invalid(code: StatusCode, error: ResponseError)
 		}
 
+		public let localizedDescription: String
+
+		fileprivate init(_ error: Error) {
+			// TODO: Handle errors
+			localizedDescription = error.localizedDescription
+		}
+
 	}
 
 
