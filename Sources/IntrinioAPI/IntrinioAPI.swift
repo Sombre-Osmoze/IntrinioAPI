@@ -86,7 +86,8 @@ public class IntrinioAPI: NSObject {
 
 	// MARK: - Forex
 
-	@discardableResult public func forexCurrencies(handler: @escaping(_ result: Result<[Currency], ErrorAPI>)->Void) -> Progress? {
+	/// Returns a list of forex currencies for which prices are available.
+	@discardableResult public func forexCurrencies(handler: @escaping(_ result: Result<[Currency], ErrorAPI>)->Void) -> Progress {
 
 		let url = endpoints.forex(.currencies)
 		let log : StaticString = "Availables currencies request"
@@ -115,11 +116,42 @@ public class IntrinioAPI: NSObject {
 		return task.progress
 	}
 
+	@discardableResult public func forexPairs(handler: @escaping(_ result: Result<[Currency.Pair], ErrorAPI>) -> Void) -> Progress {
 
+		let url = endpoints.forex(.pairs)
+		let log : StaticString = "Possibles forex pairs"
+
+		#if canImport(os)
+		os_signpost(.begin, log: logging, name: log)
+		#endif
+
+		let task = session.dataTask(with: url) { (unsafeData, response, error) in
+			do {
+				let (answer, data) = try self.verify(response, unsafeData, error)
+
+				let values : CurrencyPairs = try self.verify(response: answer, data: data, log: log)
+
+				#if canImport(os)
+				os_signpost(.end, log: self.logging, name: log, "Fetched %d forex pairs", values.pairs.count)
+				#endif
+
+				handler(.success(values.pairs))
+			} catch {
+				handler(.failure(self.handle(error, log: log)))
+			}
+		}
+
+		task.resume()
+		return task.progress
+	}
 
 	// MARK: - Errors
 
 	private func handle(_ error: Error, log: StaticString) -> ErrorAPI {
+
+				#if canImport(os)
+				os_signpost(.end, log: logging, name: log, "Error: %s", error.localizedDescription)
+				#endif
 
 		switch error {
 		case let status as ErrorAPI.StatusCode :

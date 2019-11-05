@@ -7,9 +7,9 @@ final class IntrinioAPITests: XCTestCase {
 
 	// MARK: - Forex
 
-	func testCurrencies() {
+	func testForexCurrencies() {
 
-		let expectation = XCTestExpectation(description: "Get the total number of accounts")
+		let expectation = XCTestExpectation(description: "Get the list of the availables currencies")
 
 		interaction.forexCurrencies { (result) in
 			switch result {
@@ -25,8 +25,27 @@ final class IntrinioAPITests: XCTestCase {
 
 	}
 
+	func testForexPairs() {
+
+		let expectation = XCTestExpectation(description: "Get the list of the give forex pairs")
+
+		interaction.forexPairs { (result) in
+			switch result {
+			case .success(_):
+				break
+			case .failure(let error):
+				XCTFail(error.localizedDescription)
+			}
+			expectation.fulfill()
+		}
+
+		wait(for: [expectation], timeout: 10)
+
+	}
+
     static var allTests = [
-        ("test forex currencies", testCurrencies),
+        ("test forex currencies", testForexCurrencies),
+		("test forex pairs", testForexPairs)
     ]
 }
 
