@@ -2,19 +2,37 @@ import XCTest
 @testable import IntrinioAPI
 
 final class IntrinioAPITests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-//        XCTAssertEqual(IntrinioAPI().text, "Hello, World!")
-    }
+
+	let interaction : IntrinioAPI = IntrinioAPI(api: apiKey)
+
+	// MARK: - Forex
+
+	func testCurrencies() {
+
+		let expectation = XCTestExpectation(description: "Get the total number of accounts")
+
+		interaction.forexCurrencies { (result) in
+			switch result {
+			case .success(_):
+				break
+			case .failure(let error):
+				XCTFail(error.localizedDescription)
+			}
+			expectation.fulfill()
+		}
+
+		wait(for: [expectation], timeout: 10)
+
+	}
 
     static var allTests = [
-        ("testExample", testExample),
+        ("test forex currencies", testCurrencies),
     ]
 }
 
 // MARK: - Testing Data
+
+let apiKey : String = "Ojc5MmI3Yjc2OWJlNGRlYmZkOGM2MDIyMjg0N2RlODNh"
 
 let testFolder : URL = {
 	var url = URL(fileURLWithPath: #file)

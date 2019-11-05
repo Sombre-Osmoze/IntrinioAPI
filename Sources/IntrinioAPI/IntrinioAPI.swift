@@ -19,6 +19,10 @@ import os.signpost
 public class IntrinioAPI: NSObject {
 
 	public init(api key: String) {
+		let configuation = URLSessionConfiguration.default
+		// Adding api key to all request
+		configuation.httpAdditionalHeaders = ["Authorization" : key]
+		session = .init(configuration: configuation)
 
 		super.init()
 	}
@@ -58,6 +62,7 @@ public class IntrinioAPI: NSObject {
 				return try decoder.decode(T.self, from: data)
 			}
 
+			// If the response is a known unvalid one, throwing the appropriate error
 		case 401, 402, 403, 429, 500, 503:
 				#if canImport(os)
 					os_signpost(.event, log: logging, name: log, "Bad request, status %d", answer.statusCode)
@@ -75,7 +80,41 @@ public class IntrinioAPI: NSObject {
 
 	// MARK: - Session
 
-	private let session : URLSession = URLSession(configuration: .default)
+	private let session : URLSession
+
+
+
+	// MARK: - Forex
+
+	@discardableResult public func forexCurrencies(handler: @escaping(_ result: Result<[Currency], ErrorAPI>)->Void) -> Progress? {
+
+		let url = endpoints.forex(.currencies)
+		let log : StaticString = "Availables currencies request"
+
+		#if canImport(os)
+		os_signpost(.begin, log: logging, name: log)
+		#endif
+
+		let task = session.dataTask(with: url) { (unsafeData, response, error) in
+			do {
+				let (answer, data) = try self.verify(response, unsafeData, error)
+
+				let values : Currencies = try self.verify(response: answer, data: data, log: log)
+
+				#if canImport(os)
+				os_signpost(.end, log: self.logging, name: log, "Fetched %d currencies", values.currencies.count)
+				#endif
+
+				handler(.success(values.currencies))
+			} catch {
+				handler(.failure(self.handle(error, log: log)))
+			}
+		}
+
+		task.resume()
+		return task.progress
+	}
+
 
 
 	// MARK: - Errors

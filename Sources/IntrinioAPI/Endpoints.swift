@@ -31,7 +31,7 @@ struct Endpoints {
 			// TODO: Price Parameters
 		}
 
-		return components.url!
+		return components.url(relativeTo: base)!
 	}
 
 }
