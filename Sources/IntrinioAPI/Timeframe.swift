@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Timeframe: Codable {
+public enum Timeframe: String, Codable {
 	case m1 = "m1"
 	case m5 = "m5"
 	case m15 = "m15"
