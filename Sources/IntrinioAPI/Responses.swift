@@ -40,6 +40,17 @@ public protocol PaggingResponse : ResponseAPI {
 	var nextPage : PageToken? { get }
 }
 
+// MARK: - Errors
+
+public struct ResponseError : ResponseAPI, Error {
+
+	public let error : String
+
+	public let message : String
+
+}
+
+
 // MARK: - Forex
 
 
