@@ -23,6 +23,45 @@ public class IntrinioAPI: NSObject {
 		super.init()
 	}
 
+	// MARK: - Request
+
+	private let endpoints = Endpoints()
+
+	private func verify<T: ResponseAPI>(response: URLResponse, data: Data, for type: T.Type = T.self, log: StaticString) throws -> T {
+
+		// Checking if the response is a HTTP response
+		guard let answer = response as? HTTPURLResponse else { throw ErrorAPI.Response.corrupted }
+
+		// Verifying the status code
+		switch answer.statusCode {
+			// If the response is correct decrypt data
+		case 200:
+			if let api = try? decoder.decode(ResponseError.self, from: data) {
+				throw api
+			} else {
+				return try decoder.decode(T.self, from: data)
+			}
+
+		case 401, 402, 403, 429, 500, 503:
+				#if canImport(os)
+					os_signpost(.event, log: logging, name: log, "Bad request, status %d", answer.statusCode)
+				#endif
+				throw ErrorAPI.Response.invalid(code: ErrorAPI.StatusCode(rawValue: answer.statusCode)!,
+												error: try decoder.decode(ResponseError.self, from: data))
+
+		default:
+			logger.error("Unknow status code \(answer.statusCode) for \(answer.url?.path ?? "no URL")")
+			throw ErrorAPI.Response.badStatus(answer.statusCode)
+		}
+
+	}
+
+
+	// MARK: - Session
+
+	private let session : URLSession = URLSession(configuration: .default)
+
+
 	// MARK: - Errors
 
 	public struct ErrorAPI: Error {
