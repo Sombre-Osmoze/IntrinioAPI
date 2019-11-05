@@ -145,6 +145,13 @@ public class IntrinioAPI: NSObject {
 		return task.progress
 	}
 
+	@discardableResult public func forexPrices(for pair: Currency.Pair, time frame: String,
+											   handler: @escaping(Result<[Price], ErrorAPI>)->Void) -> Void {
+
+		let url = endpoints.forex(.price, param: nil)
+
+	}
+
 	// MARK: - Errors
 
 	private func handle(_ error: Error, log: StaticString) -> ErrorAPI {
