@@ -60,13 +60,13 @@ public struct Currency: ResponseAPI {
 	public struct Pair : ResponseAPI {
 
 		/// The common code of the currency pair.
-		let code : String
+		public let code : String
 
 		/// The ISO 4217 currency code of the base currency.
-		let base : Code
+		public let base : Code
 
 		/// The ISO 4217 currency code of the quote currency.
-		let quote : Code
+		public let quote : Code
 
 		enum CodingKeys: String, CodingKey {
 			case code = "code"
