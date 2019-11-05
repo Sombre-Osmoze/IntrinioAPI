@@ -27,6 +27,22 @@ public class IntrinioAPI: NSObject {
 
 	private let endpoints = Endpoints()
 
+	/// This function will check the callback of a DataTaskRequest.
+	private func verify(_ response: URLResponse?, _ data: Data?, _ error: Error?) throws -> (URLResponse, Data) {
+
+		// If a error occurred throw it
+		if let error = error {
+			throw error
+		}
+
+		// Checking if the request have a response and data
+		guard let anwser = response else { throw ErrorAPI.Response.noResponse }
+
+		guard let data = data else { throw ErrorAPI.Response.noData }
+
+		return (anwser, data)
+	}
+
 	private func verify<T: ResponseAPI>(response: URLResponse, data: Data, for type: T.Type = T.self, log: StaticString) throws -> T {
 
 		// Checking if the response is a HTTP response
@@ -88,6 +104,15 @@ public class IntrinioAPI: NSObject {
 		fileprivate init(_ error: Error) {
 			// TODO: Handle errors
 			localizedDescription = error.localizedDescription
+		}
+
+		fileprivate init(_ error: StatusCode) {
+			// TODO: Handle errors
+			localizedDescription = "The request made with the server failed for multiple reason."
+		}
+
+		fileprivate init(_ error: Response) {
+			localizedDescription = "The request made with the server was corruped."
 		}
 
 	}
