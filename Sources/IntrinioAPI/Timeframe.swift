@@ -22,3 +22,10 @@ public enum Timeframe: String, Codable {
 	case W1 = "W1"
 	case M1 = "M1"
 }
+
+public typealias TimeValues = Set<TimeValue>
+
+public enum TimeValue {
+	case hour
+	case date
+}

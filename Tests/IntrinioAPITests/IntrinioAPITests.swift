@@ -43,6 +43,28 @@ final class IntrinioAPITests: XCTestCase {
 
 	}
 
+	func testForexPrices() {
+
+		let expectation = XCTestExpectation(description: "Get the history prices for EURUSD")
+
+		let pair = Currency.Pair(code: "EURUSD", base: .EUR, quote: .USD)
+
+		let start = Date(timeIntervalSinceNow: -24 * 3_600)
+
+		interaction.forexPrices(for: pair, time: .H1, from: start, to: Date(), timezone: "UTC", time: [.hour, .date]) { result in
+			switch result {
+			case .success(_):
+				break
+			case .failure(let error):
+				XCTFail(error.localizedDescription)
+			}
+
+			expectation.fulfill()
+		}
+
+		wait(for: [expectation], timeout: 10)
+	}
+
     static var allTests = [
         ("test forex currencies", testForexCurrencies),
 		("test forex pairs", testForexPairs)

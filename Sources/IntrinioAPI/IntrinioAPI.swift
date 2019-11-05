@@ -56,6 +56,12 @@ public class IntrinioAPI: NSObject {
 		switch answer.statusCode {
 			// If the response is correct decrypt data
 		case 200:
+
+			// Checking if the content body is the size expected in the header
+			guard data.count == Int(answer.expectedContentLength) else {
+				throw ErrorAPI.Response.dataCorrupted(expected: Int(answer.expectedContentLength), data.count)
+			}
+
 			if let api = try? decoder.decode(ResponseError.self, from: data) {
 				throw api
 			} else {
@@ -119,7 +125,7 @@ public class IntrinioAPI: NSObject {
 	@discardableResult public func forexPairs(handler: @escaping(_ result: Result<[Currency.Pair], ErrorAPI>) -> Void) -> Progress {
 
 		let url = endpoints.forex(.pairs)
-		let log : StaticString = "Possibles forex pairs"
+		let log : StaticString = "Possibles forex pairs request"
 
 		#if canImport(os)
 		os_signpost(.begin, log: logging, name: log)
@@ -140,6 +146,53 @@ public class IntrinioAPI: NSObject {
 				handler(.failure(self.handle(error, log: log)))
 			}
 		}
+
+		task.resume()
+		return task.progress
+	}
+
+	@discardableResult public func forexPrices(for pair: Currency.Pair, time frame: Timeframe = .D1,
+											   page size: Int = 100, next page: String? = nil,
+											   from start: Date, to end: Date = .init(), timezone: String = "UTC", time values: TimeValues,
+											   handler: @escaping(_ result: Result<[Price], ErrorAPI>)->Void) -> Progress {
+
+		var parameters : Set<URLQueryItem> = [.init(timezone: timezone) , .init(page: size)]
+
+		if values.contains(.hour) {
+			parameters.insert(.init(startTime: start))
+			parameters.insert(.init(endTime: end))
+		}
+
+		if values.contains(.date) {
+			parameters.insert(.init(start: start))
+			parameters.insert(.init(end: end))
+		}
+
+		let url = endpoints.forex(.price, pair: pair, timeFrame: frame, param: parameters)
+		let log : StaticString = "Price history request"
+
+		#if canImport(os)
+		os_signpost(.begin, log: logging, name: log,
+					"%d element of %s at %s frame in %s timezone, from %s to %s",
+					size, pair.code, frame.rawValue, timezone, start.description, end.description)
+		#endif
+
+		let task = session.dataTask(with: url) { (unsafeData, response, error) in
+			do {
+				let (answer, data) = try self.verify(response, unsafeData, error)
+
+				let values : CurrencyPrices = try self.verify(response: answer, data: data, log: log)
+
+				#if canImport(os)
+				os_signpost(.end, log: self.logging, name: log, "Fetched %d prices of %s", values.prices.count, values.pair.code)
+				#endif
+
+				handler(.success(values.prices))
+			} catch {
+				handler(.failure(self.handle(error, log: log)))
+			}
+		}
+
 
 		task.resume()
 		return task.progress
@@ -180,6 +233,7 @@ public class IntrinioAPI: NSObject {
 			case noResponse
 			case noData
 			case badStatus(Int)
+			case dataCorrupted(expected: Int, Int)
 			case invalid(code: StatusCode, error: ResponseError)
 		}
 
