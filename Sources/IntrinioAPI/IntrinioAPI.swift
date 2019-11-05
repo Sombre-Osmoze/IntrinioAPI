@@ -17,7 +17,7 @@ class IntrinioAPI: NSObject {
 
 	// MARK: - Errors
 
-	enum APIError: Error {
+	public struct ErrorAPI: Error {
 
 		enum StatusCode: Int, Error {
 			case unauthorized = 401

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Status Code
 
-func log(_ error: IntrinioAPI.APIError.StatusCode) -> StaticString {
+func log(_ error: IntrinioAPI.ErrorAPI.StatusCode) -> StaticString {
 	switch error {
 	case .unauthorized:
 		return "User/Password API Keys are incorrect."
