@@ -11,6 +11,12 @@ import XCTest
 
 final class ForexTests: XCTestCase {
 
+	static var allTests = [
+		("test currencies decoding", testCurrenciesDecoding),
+		("test pairs decoding", testCurrencyPairsDecoding)
+		("test prices decoding", testCurrencyPricesDecoding)
+	]
+
 	// MARK: - Codable
 
 	// MARK: Currency

@@ -68,6 +68,7 @@ final class IntrinioAPITests: XCTestCase {
     static var allTests = [
         ("test forex currencies", testForexCurrencies),
 		("test forex pairs", testForexPairs)
+		("test forex prices", testForexPrices)
     ]
 }
 
