@@ -153,28 +153,40 @@ public class IntrinioAPI: NSObject {
 
 	@discardableResult public func forexPrices(for pair: Currency.Pair, time frame: Timeframe = .D1,
 											   page size: Int = 100, next page: String? = nil,
-											   from start: Date, to end: Date = .init(), timezone: String = "UTC", time values: TimeValues,
+											   from start: Date? = nil, to end: Date? = nil, timezone: String = "UTC", time values: TimeValues,
 											   handler: @escaping(_ result: Result<[Price], ErrorAPI>)->Void) -> Progress {
 
 		var parameters : Set<URLQueryItem> = [.init(timezone: timezone) , .init(page: size)]
 
-		if values.contains(.hour) {
-			parameters.insert(.init(startTime: start))
-			parameters.insert(.init(endTime: end))
+		if let from = start {
+
+			if values.contains(.hour) {
+				parameters.insert(.init(startTime: from))
+			}
+			if values.contains(.date) {
+				parameters.insert(.init(start: from))
+			}
+
 		}
 
-		if values.contains(.date) {
-			parameters.insert(.init(start: start))
-			parameters.insert(.init(end: end))
+		if let to = end {
+			if values.contains(.hour) {
+				parameters.insert(.init(endTime: to))
+			}
+
+			if values.contains(.date) {
+				parameters.insert(.init(end: to))
+			}
 		}
+
 
 		let url = endpoints.forex(.price, pair: pair, timeFrame: frame, param: parameters)
 		let log : StaticString = "Price history request"
 
 		#if canImport(os)
 		os_signpost(.begin, log: logging, name: log,
-					"%d element of %s at %s frame in %s timezone, from %s to %s",
-					size, pair.code, frame.rawValue, timezone, start.description, end.description)
+					"%d element of %s at %s frame in %s timezone, with %s",
+					size, pair.code, frame.rawValue, timezone, values.description)
 		#endif
 
 		let task = session.dataTask(with: url) { (unsafeData, response, error) in
@@ -259,10 +271,10 @@ public class IntrinioAPI: NSObject {
 
 	// MARK: - Logs
 
-	private let logger = Logger(label: "IntrinioAPI")
+	private let logger = Logger(label: "IntrinioAPI.InteractionAPI")
 
 	#if canImport(os)
-	private let logging = OSLog(subsystem: "IntrinioAPI", category: "Request")
+	private let logging = OSLog(subsystem: "IntrinioAPI.InteractionAPI", category: "Requests")
 	#endif
 
 

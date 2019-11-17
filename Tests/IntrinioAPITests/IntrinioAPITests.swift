@@ -49,9 +49,9 @@ final class IntrinioAPITests: XCTestCase {
 
 		let pair = Currency.Pair(code: "EURUSD", base: .EUR, quote: .USD)
 
-		let start = Date(timeIntervalSinceNow: -24 * 3_600)
+//		let start = Date(timeIntervalSinceNow: -7 * 24 * 3_600)
 
-		interaction.forexPrices(for: pair, time: .H1, from: start, to: Date(), timezone: "UTC", time: [.hour, .date]) { result in
+		interaction.forexPrices(for: pair, time: .H1, timezone: "UTC", time: []) { result in
 			switch result {
 			case .success(_):
 				break
@@ -67,7 +67,7 @@ final class IntrinioAPITests: XCTestCase {
 
     static var allTests = [
         ("test forex currencies", testForexCurrencies),
-		("test forex pairs", testForexPairs)
+		("test forex pairs", testForexPairs),
 		("test forex prices", testForexPrices)
     ]
 }
