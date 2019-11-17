@@ -24,7 +24,7 @@ struct Endpoints {
 		}
 	}
 
-	func forex(_ endpoint: Endpoint.Forex, param: Set<URLQueryItem>? = nil) -> URL {
+	func forex(_ endpoint: Endpoint.Forex) -> URL {
 		let components = URLComponents(string: "/forex/\(endpoint.rawValue)")!
 
 		return components.url(relativeTo: base)!
@@ -32,10 +32,16 @@ struct Endpoints {
 
 	func forex(_ endpoint: Endpoint.Forex, pair: Currency.Pair, timeFrame: Timeframe,
 			   param: Set<URLQueryItem>? = nil) -> URL {
-		var components = URLComponents(string: "/forex/\(endpoint.rawValue)/\(pair.code)/\(timeFrame.rawValue)")!
+
+		var path : String = "/forex/\(endpoint.rawValue)"
+
+		if endpoint == .price {
+			path += "/\(pair.code)/\(timeFrame.rawValue)"
+		}
+		var components = URLComponents(string: path)!
 
 		if let parameters = param {
-			components.queryItems = Array(parameters)
+			components.queryItems = parameters.sorted(by: { $0.name < $1.name })
 		}
 
 		return components.url(relativeTo: base)!
