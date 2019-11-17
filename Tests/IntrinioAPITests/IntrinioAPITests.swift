@@ -51,7 +51,7 @@ final class IntrinioAPITests: XCTestCase {
 
 //		let start = Date(timeIntervalSinceNow: -7 * 24 * 3_600)
 
-		interaction.forexPrices(for: pair, time: .H1, timezone: "UTC", time: []) { result in
+		interaction.forexPrices(for: pair, time: .H1, time: []) { result in
 			switch result {
 			case .success(_):
 				break
