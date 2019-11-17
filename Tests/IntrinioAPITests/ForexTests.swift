@@ -13,7 +13,7 @@ final class ForexTests: XCTestCase {
 
 	static var allTests = [
 		("test currencies decoding", testCurrenciesDecoding),
-		("test pairs decoding", testCurrencyPairsDecoding)
+		("test pairs decoding", testCurrencyPairsDecoding),
 		("test prices decoding", testCurrencyPricesDecoding)
 	]
 
@@ -46,10 +46,6 @@ final class ForexTests: XCTestCase {
 		XCTAssertNoThrow(try decoder.decode(CurrencyPrices.self, from: data), "Can't decode currency prices")
 	}
 
-	static var allTests = [
-		("Currencies decoding", testCurrenciesDecoding),
-		("Currency pairs decoding", testCurrencyPairsDecoding)
-	]
 }
 
 // MARK: - Testing Data
