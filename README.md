@@ -1,3 +1,3 @@
 # IntrinioAPI
 
-A description of this package.
+A Swift wrapper for [Intrinio's APIs](https://intrinio.com)
