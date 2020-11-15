@@ -7,7 +7,7 @@
 
 
 import XCTest
-@testable import IntrinioAPI
+@testable import Intrinio
 
 final class EndpointsTests: XCTestCase {
 
@@ -17,19 +17,19 @@ final class EndpointsTests: XCTestCase {
 		("test forex prices", testForexPrices)
 	]
 
-	let endpoints = Endpoints()
+	let endpoints = Endpoints(domain: domain)
 
 	// MARK: - Forex
 
 	func testForexCurrencies() {
-		let valid = URL(string: "https://api-v2.intrinio.com/forex/currencies")!
+		let valid = URL(string: "https://\(domain)/forex/currencies")!
 
 		XCTAssertEqual(endpoints.forex(.currencies).absoluteURL, valid,
 					   "Unvalid url for currencies endpoint")
 	}
 
 	func testForexPairs() {
-		let valid = URL(string: "https://api-v2.intrinio.com/forex/pairs")!
+		let valid = URL(string: "https://\(domain)/forex/pairs")!
 
 
 		XCTAssertEqual(endpoints.forex(.pairs).absoluteURL, valid,
@@ -43,7 +43,7 @@ final class EndpointsTests: XCTestCase {
 
 		let time = Timeframe.D1
 
-		let valid = URL(string: "https://api-v2.intrinio.com/forex/prices/\(pair.code)/\(time.rawValue)")!
+		let valid = URL(string: "https://\(domain)/forex/prices/\(pair.code)/\(time.rawValue)")!
 
 		let url = endpoints.forex(.price, pair: pair, timeFrame: time, param: nil)
 
@@ -51,3 +51,5 @@ final class EndpointsTests: XCTestCase {
 					   "Unvalid url for prices endpoint")
 	}
 }
+
+fileprivate let domain = "api-v2.intrinio.com"

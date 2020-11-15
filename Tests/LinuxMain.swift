@@ -1,9 +1,9 @@
 import XCTest
 
+import IntrinioTests
 import IntrinioAPITests
 
 var tests = [XCTestCaseEntry]()
+tests += IntrinioTests.allTests()
 tests += IntrinioAPITests.allTests()
-tests += ForexTests.allTests()
-tests += EndpointsTests.allTests()
 XCTMain(tests)

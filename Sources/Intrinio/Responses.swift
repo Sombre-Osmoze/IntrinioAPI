@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Codable
 
-let decoder : JSONDecoder = {
+public let decoder : JSONDecoder = {
 	let jsonDecoder = JSONDecoder()
 
 	let formatter = DateFormatter()

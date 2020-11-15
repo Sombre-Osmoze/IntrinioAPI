@@ -1,5 +1,6 @@
 import XCTest
 @testable import IntrinioAPI
+@testable import Intrinio
 
 final class IntrinioAPITests: XCTestCase {
 
@@ -75,21 +76,3 @@ final class IntrinioAPITests: XCTestCase {
 // MARK: - Testing Data
 
 let apiKey : String = "Ojc5MmI3Yjc2OWJlNGRlYmZkOGM2MDIyMjg0N2RlODNh"
-
-let testFolder : URL = {
-	var url = URL(fileURLWithPath: #file)
-	url.deleteLastPathComponent()
-	url.appendPathComponent("Data", isDirectory: true)
-	return url
-}()
-
-func file(named name: String, ext: String? = nil, in folder: URL = testFolder) throws -> Data {
-	var url = folder.appendingPathComponent(name, isDirectory: false)
-
-	if let ext = ext {
-		url.appendPathExtension(ext)
-	}
-
-	return try Data(contentsOf: url)
-}
-

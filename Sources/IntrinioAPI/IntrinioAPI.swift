@@ -7,6 +7,7 @@
 
 import Foundation
 import Logging
+import Intrinio
 
 #if canImport(Combine)
 import Combine
@@ -18,18 +19,19 @@ import os.signpost
 
 public class IntrinioAPI: NSObject {
 
-	public init(api key: String) {
+	public init(api key: String, sandbox: Bool = false) {
 		let configuation = URLSessionConfiguration.default
 		// Adding api key to all request
 		configuation.httpAdditionalHeaders = ["Authorization" : key]
 		session = .init(configuration: configuation)
+		endpoints = .init(domain: sandbox ? "api-v2.intrinio.com" : "api-v2.intrinio.com")
 
 		super.init()
 	}
 
 	// MARK: - Request
 
-	private let endpoints = Endpoints()
+	private let endpoints : Endpoints
 
 	/// This function will check the callback of a DataTaskRequest.
 	private func verify(_ response: URLResponse?, _ data: Data?, _ error: Error?) throws -> (URLResponse, Data) {
@@ -279,3 +281,4 @@ public class IntrinioAPI: NSObject {
 
 
 }
+

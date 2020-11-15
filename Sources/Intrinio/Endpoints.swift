@@ -7,30 +7,31 @@
 
 import Foundation
 
-struct Endpoints {
+public struct Endpoints {
 
-	let domain : String = "api-v2.intrinio.com"
+	private let base : URL
 
-	private let base : URL = URL(string: "https://api-v2.intrinio.com")!
-
+	public init(domain: String) {
+		base = URL(string: "https://\(domain)")!
+	}
 
 	// MARK: - Endpoint
 
-	enum Endpoint {
-		enum Forex: String {
+	public enum Endpoint {
+		public enum Forex: String {
 			case currencies = "currencies"
 			case pairs = "pairs"
 			case price = "prices"
 		}
 	}
 
-	func forex(_ endpoint: Endpoint.Forex) -> URL {
+	public func forex(_ endpoint: Endpoint.Forex) -> URL {
 		let components = URLComponents(string: "/forex/\(endpoint.rawValue)")!
 
 		return components.url(relativeTo: base)!
 	}
 
-	func forex(_ endpoint: Endpoint.Forex, pair: Currency.Pair, timeFrame: Timeframe,
+	public func forex(_ endpoint: Endpoint.Forex, pair: Currency.Pair, timeFrame: Timeframe,
 			   param: Set<URLQueryItem>? = nil) -> URL {
 
 		var path : String = "/forex/\(endpoint.rawValue)"
@@ -72,7 +73,7 @@ fileprivate let dateFormatter : DateFormatter = {
 	return format
 }()
 
-extension URLQueryItem {
+public extension URLQueryItem {
 
 	init(timezone: String) {
 		self = .init(name: "timezone", value: timezone)
